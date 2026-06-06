@@ -1,0 +1,114 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int      @id @default(autoincrement())
+  username  String   @unique
+  password  String
+  name      String
+  role      String   @default("matchmaker")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  notes     Note[]
+}
+
+model Customer {
+  id              Int      @id @default(autoincrement())
+  // Personal
+  firstName       String
+  lastName        String
+  gender          String
+  dateOfBirth     String
+  age             Int
+  height          Int
+  country         String   @default("India")
+  city            String
+  languages       String   // JSON array stored as string
+  motherTongue    String?
+  // Contact
+  email           String   @unique
+  phone           String?
+  // Education
+  college         String?
+  degree          String?
+  // Career
+  company         String?
+  designation     String?
+  profession      String?
+  income          Float?
+  // Family
+  maritalStatus   String   @default("Never Married")
+  religion        String?
+  caste           String?
+  siblings        Int?
+  familyType      String?
+  familyValues    String?
+  // Lifestyle
+  diet            String?
+  smoking         String?  @default("No")
+  drinking        String?  @default("No")
+  horoscope       String?
+  manglik         String?
+  lifestyle       String?
+  personality     String?
+  hobbies         String?  // JSON array
+  interests       String?  // JSON array
+  // Preferences
+  wantsKids       Boolean  @default(true)
+  openToRelocate  Boolean  @default(false)
+  openToPets      Boolean  @default(false)
+  prefAgeMin      Int?
+  prefAgeMax      Int?
+  prefCity        String?
+  prefReligion    String?
+  prefCaste       String?
+  prefEducation   String?
+  prefIncomeMin   Float?
+  prefIncomeMax   Float?
+  // Status
+  status          String   @default("New")
+  journeyStep     Int      @default(0)
+  colorIdx        Int      @default(0)
+  profilePool     Boolean  @default(false)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  // Relations
+  sentMatches     MatchHistory[] @relation("Sender")
+  receivedMatches MatchHistory[] @relation("Receiver")
+  notes           Note[]
+}
+
+model MatchHistory {
+  id           Int      @id @default(autoincrement())
+  customerId   Int
+  matchId      Int
+  score        Float
+  compatibility String
+  reasons      String   // JSON array
+  introMessage String?
+  status       String   @default("Sent")
+  sentAt       DateTime @default(now())
+  customer     Customer @relation("Sender", fields: [customerId], references: [id])
+  match        Customer @relation("Receiver", fields: [matchId], references: [id])
+}
+
+model Note {
+  id         Int      @id @default(autoincrement())
+  customerId Int
+  userId     Int?
+  text       String
+  type       String   @default("Note")
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  customer   Customer @relation(fields: [customerId], references: [id])
+  user       User?    @relation(fields: [userId], references: [id])
+}
