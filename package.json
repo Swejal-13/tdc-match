@@ -1,0 +1,12 @@
+{
+  "name": "tdc-matchmaker",
+  "version": "1.0.0",
+  "description": "TDC Matchmaker CRM - Full Stack",
+  "scripts": {
+    "install:all": "cd server && npm install && cd ../client && npm install",
+    "setup:db": "cd server && npx prisma generate && npx prisma migrate dev --name init && npx prisma db seed",
+    "dev:server": "cd server && npm run dev",
+    "dev:client": "cd client && npm run dev",
+    "build:client": "cd client && npm run build"
+  }
+}
