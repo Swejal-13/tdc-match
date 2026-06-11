@@ -3,7 +3,7 @@
 ## 🔗 Live Demo
 
 **Frontend:** [https://tdc-matchmaker.vercel.app](https://tdc-matchmaker.vercel.app)
-**Backend:** [https://tdc-matchmaker-api.onrender.com](https://tdc-matchmaker-api.onrender.com)
+**Backend:** [https://tdc-match-api.onrender.com](https://tdc-matchmaker-api.onrender.com)
 **Login:** matchmaker / password123
 
 > ⚠️ Replace the URLs above with your real deployed URLs after deploying to Vercel and Render.
