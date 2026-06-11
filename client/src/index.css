@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --rose: #C84B5A;
+  --rose-light: #F9EEF0;
+  --rose-mid: #E8B4BC;
+  --gold: #B8860B;
+  --gold-light: #FDF8E8;
+  --gold-mid: #E8D48A;
+  --ink: #1A1218;
+  --ink-2: #3D2E38;
+  --ink-3: #6B5565;
+  --surface: #FDFAF8;
+  --surface-2: #F5F0EC;
+  --surface-3: #EDE5E0;
+  --border: rgba(26,18,24,0.09);
+  --border-2: rgba(26,18,24,0.16);
+  --green: #2D7A5A;
+  --green-light: #EAF5F0;
+  --blue: #2653A3;
+  --blue-light: #EBF1FB;
+  --amber: #B06A12;
+  --amber-light: #FDF3E7;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'DM Sans', system-ui, sans-serif;
+  background-color: var(--surface-2);
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border-2); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--ink-3); }
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.animate-fade-in { animation: fadeIn 0.25s ease forwards; }
+.animate-slide-up { animation: slideUp 0.3s ease forwards; }
+.animate-spin-slow { animation: spin 0.8s linear infinite; }
+
+/* Sidebar active link */
+.nav-active {
+  background: var(--rose) !important;
+  color: white !important;
+}
+
+/* Score bar gradients */
+.score-exceptional { background: var(--green); }
+.score-high { background: #3B8BD4; }
+.score-good { background: var(--gold); }
+.score-moderate { background: var(--amber); }
+.score-weak { background: var(--rose); }
